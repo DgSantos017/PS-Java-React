@@ -20,7 +20,7 @@ public class ListTransferDataService {
     TransferRepository transferRepository;
 
     @Transactional(readOnly = true)
-    public List<TransferDTO> findByAccountId(Long accountId) {
+    public List<TransferDTO> findByAccountId(Long accountId, LocalDateTime startDate, LocalDateTime endDate) {
         List<TransferEntity> transfers = transferRepository.findByAccountId(accountId);
         List<TransferDTO> transferDTOs = transfers.stream()
                 .map(EntityConverterDTO::convertTransferToDTO)
@@ -29,9 +29,6 @@ public class ListTransferDataService {
         BigDecimal totalBalance = transferDTOs.stream()
                 .map(TransferDTO::getValue)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
-
-        LocalDateTime startDate = LocalDateTime.of(2023, 1, 1, 0, 0);
-        LocalDateTime endDate = LocalDateTime.now();
 
         BigDecimal balanceInPeriod = transferDTOs.stream()
                 .filter(transferDTO -> transferDTO.getTransferDate().isAfter(startDate) && transferDTO.getTransferDate().isBefore(endDate))
@@ -43,7 +40,10 @@ public class ListTransferDataService {
             transferDTO.setBalanceInPeriod(balanceInPeriod);
         });
 
-        return transferDTOs;
+        return transferDTOs.stream()
+                .filter(transferDTO -> transferDTO.getTransferDate().isAfter(startDate) && transferDTO.getTransferDate().isBefore(endDate))
+                .collect(Collectors.toList());
     }
 }
+
 
