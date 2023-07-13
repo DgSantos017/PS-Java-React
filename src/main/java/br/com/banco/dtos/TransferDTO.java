@@ -12,9 +12,6 @@ public class TransferDTO {
     private String transactionOperatorName;
     private AccountDTO accountDTO;
 
-    public TransferDTO() {
-    }
-
     public Long getId() {
         return id;
     }

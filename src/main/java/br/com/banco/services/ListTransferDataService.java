@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ListTransferDataService {
@@ -17,8 +18,8 @@ public class ListTransferDataService {
     TransferRepository transferRepository;
 
     @Transactional(readOnly = true)
-    public List<TransferDTO> findAll() {
-        List<TransferEntity> transfers = transferRepository.findAll();
-        return transfers.stream().map(EntityConverterDTO::convertTransferToDTO).toList();
+    public List<TransferDTO> findByAccountId(Long accountId) {
+        List<TransferEntity> transfers = transferRepository.findByAccountId(accountId);
+        return transfers.stream().map(EntityConverterDTO::convertTransferToDTO).collect(Collectors.toList());
     }
 }
