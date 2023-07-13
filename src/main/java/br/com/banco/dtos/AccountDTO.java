@@ -15,7 +15,15 @@ public class AccountDTO {
         return idAccount;
     }
 
+    public void setIdAccount(Long idAccount) {
+        this.idAccount = idAccount;
+    }
+
     public String getResponsibleName() {
         return responsibleName;
+    }
+
+    public void setResponsibleName(String responsibleName) {
+        this.responsibleName = responsibleName;
     }
 }

@@ -1,5 +1,8 @@
 package br.com.banco.dtos;
 
+import br.com.banco.entities.AccountEntity;
+import br.com.banco.entities.TransferEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -9,40 +12,57 @@ public class TransferDTO {
     private BigDecimal value;
     private String type;
     private String transactionOperatorName;
-    private AccountDTO account;
+    private AccountEntity account;
 
     public TransferDTO(){}
 
-    public TransferDTO(Long id, LocalDateTime transferDate, BigDecimal value, String type, String transactionOperatorName, AccountDTO account) {
-        this.id = id;
-        this.transferDate = transferDate;
-        this.value = value;
-        this.type = type;
-        this.transactionOperatorName = transactionOperatorName;
-        this.account = account;
+    public TransferDTO(TransferEntity entity) {
+        id = entity.getId();
+        transferDate = entity.getTransferDate();
+        value = entity.getValue();
+        type = entity.getType();
+        transactionOperatorName = entity.getTransactionOperatorName();
+        account = entity.getAccount();
     }
 
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDateTime getTransferDate() {
         return transferDate;
+    }
+
+    public void setTransferDate(LocalDateTime transferDate) {
+        this.transferDate = transferDate;
     }
 
     public BigDecimal getValue() {
         return value;
     }
 
+    public void setValue(BigDecimal value) {
+        this.value = value;
+    }
+
     public String getType() {
         return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getTransactionOperatorName() {
         return transactionOperatorName;
     }
 
-    public AccountDTO getAccount() {
-        return account;
+    public void setTransactionOperatorName(String transactionOperatorName) {
+        this.transactionOperatorName = transactionOperatorName;
     }
+
 }
