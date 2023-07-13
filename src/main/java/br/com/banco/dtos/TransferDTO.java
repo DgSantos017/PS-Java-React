@@ -11,6 +11,8 @@ public class TransferDTO {
     private String type;
     private String transactionOperatorName;
     private AccountDTO accountDTO;
+    private BigDecimal totalBalance;
+    private BigDecimal balanceInPeriod;
 
     public Long getId() {
         return id;
@@ -58,5 +60,21 @@ public class TransferDTO {
 
     public void setAccountDTO(AccountDTO accountDTO) {
         this.accountDTO = accountDTO;
+    }
+
+    public BigDecimal getTotalBalance() {
+        return totalBalance;
+    }
+
+    public void setTotalBalance(BigDecimal totalBalance) {
+        this.totalBalance = totalBalance;
+    }
+
+    public BigDecimal getBalanceInPeriod() {
+        return balanceInPeriod;
+    }
+
+    public void setBalanceInPeriod(BigDecimal balanceInPeriod) {
+        this.balanceInPeriod = balanceInPeriod;
     }
 }
