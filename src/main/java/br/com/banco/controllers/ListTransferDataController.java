@@ -1,6 +1,7 @@
 package br.com.banco.controllers;
 
-import br.com.banco.entities.AccountEntity;
+import br.com.banco.dtos.TransferDTO;
+import br.com.banco.entities.TransferEntity;
 import br.com.banco.services.ListTransferDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,7 @@ public class ListTransferDataController {
     ListTransferDataService listTransferDataService;
 
     @GetMapping
-    public List<AccountEntity> findAll() {
+    public List<TransferDTO> findAll() {
         return listTransferDataService.findAll();
     }
 }
