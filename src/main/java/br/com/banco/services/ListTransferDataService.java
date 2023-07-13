@@ -1,5 +1,6 @@
 package br.com.banco.services;
 
+import br.com.banco.dtos.EntityConverterDTO;
 import br.com.banco.dtos.TransferDTO;
 import br.com.banco.entities.TransferEntity;
 import br.com.banco.repositories.TransferRepository;
@@ -18,6 +19,6 @@ public class ListTransferDataService {
     @Transactional(readOnly = true)
     public List<TransferDTO> findAll() {
         List<TransferEntity> transfers = transferRepository.findAll();
-        return transfers.stream().map(x -> new TransferDTO(x)).toList();
+        return transfers.stream().map(EntityConverterDTO::convertTransferToDTO).toList();
     }
 }

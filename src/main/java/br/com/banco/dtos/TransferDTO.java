@@ -1,7 +1,5 @@
 package br.com.banco.dtos;
 
-import br.com.banco.entities.AccountEntity;
-import br.com.banco.entities.TransferEntity;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -12,17 +10,9 @@ public class TransferDTO {
     private BigDecimal value;
     private String type;
     private String transactionOperatorName;
-    private AccountEntity account;
+    private AccountDTO accountDTO;
 
-    public TransferDTO(){}
-
-    public TransferDTO(TransferEntity entity) {
-        id = entity.getId();
-        transferDate = entity.getTransferDate();
-        value = entity.getValue();
-        type = entity.getType();
-        transactionOperatorName = entity.getTransactionOperatorName();
-        account = entity.getAccount();
+    public TransferDTO() {
     }
 
     public Long getId() {
@@ -65,4 +55,11 @@ public class TransferDTO {
         this.transactionOperatorName = transactionOperatorName;
     }
 
+    public AccountDTO getAccountDTO() {
+        return accountDTO;
+    }
+
+    public void setAccountDTO(AccountDTO accountDTO) {
+        this.accountDTO = accountDTO;
+    }
 }

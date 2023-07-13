@@ -6,6 +6,7 @@ import br.com.banco.entities.TransferEntity;
 public class EntityConverterDTO {
     public static TransferDTO convertTransferToDTO(TransferEntity transferEntity) {
         TransferDTO transferDTO = new TransferDTO();
+
         transferDTO.setId(transferEntity.getId());
         transferDTO.setTransferDate(transferEntity.getTransferDate());
         transferDTO.setValue(transferEntity.getValue());
@@ -17,7 +18,10 @@ public class EntityConverterDTO {
         accountDTO.setIdAccount(accountEntity.getIdAccount());
         accountDTO.setResponsibleName(accountEntity.getResponsibleName());
 
+        transferDTO.setAccountDTO(accountDTO);
+
         return transferDTO;
     }
 }
+
 
