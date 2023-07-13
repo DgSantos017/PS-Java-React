@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class TransferDTO {
-    private Long id;
+
     private LocalDateTime transferDate;
     private BigDecimal value;
     private String type;
@@ -13,14 +13,6 @@ public class TransferDTO {
     private AccountDTO accountDTO;
     private BigDecimal totalBalance;
     private BigDecimal balanceInPeriod;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public LocalDateTime getTransferDate() {
         return transferDate;

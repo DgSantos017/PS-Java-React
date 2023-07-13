@@ -7,7 +7,6 @@ public class EntityConverterDTO {
     public static TransferDTO convertTransferToDTO(TransferEntity transferEntity) {
         TransferDTO transferDTO = new TransferDTO();
 
-        transferDTO.setId(transferEntity.getId());
         transferDTO.setTransferDate(transferEntity.getTransferDate());
         transferDTO.setValue(transferEntity.getValue());
         transferDTO.setType(transferEntity.getType());
