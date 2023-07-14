@@ -40,8 +40,10 @@ public class ListTransferDataService {
             transferDTO.setBalanceInPeriod(balanceInPeriod);
         });
 
+
         return transferDTOs.stream()
                 .filter(transferDTO -> transferDTO.getTransferDate().isAfter(startDate) && transferDTO.getTransferDate().isBefore(endDate))
+//                .filter(transferDTO -> transferDTO.getTransactionOperatorName().)
                 .collect(Collectors.toList());
     }
 }
