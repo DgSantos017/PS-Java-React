@@ -20,7 +20,7 @@ public class ListTransferDataService {
     TransferRepository transferRepository;
 
     @Transactional(readOnly = true)
-    public List<TransferDTO> findByAccountId(Long accountId, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<TransferDTO> findByAccountId(Long accountId, LocalDateTime startDate, LocalDateTime endDate, String transactionOperatorName, String type) {
         List<TransferEntity> transfers = transferRepository.findByAccountId(accountId);
         List<TransferDTO> transferDTOs = transfers.stream()
                 .map(EntityConverterDTO::convertTransferToDTO)
@@ -43,7 +43,8 @@ public class ListTransferDataService {
 
         return transferDTOs.stream()
                 .filter(transferDTO -> transferDTO.getTransferDate().isAfter(startDate) && transferDTO.getTransferDate().isBefore(endDate))
-//                .filter(transferDTO -> transferDTO.getTransactionOperatorName().)
+                .filter(transferDTO -> transferDTO.getTransactionOperatorName().toUpperCase().equals(transactionOperatorName.toUpperCase()))
+                .filter(transferDTO -> transferDTO.getType().toUpperCase().equals(type.toUpperCase()))
                 .collect(Collectors.toList());
     }
 }
