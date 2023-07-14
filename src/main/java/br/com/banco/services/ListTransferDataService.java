@@ -40,6 +40,13 @@ public class ListTransferDataService {
             transferDTO.setBalanceInPeriod(balanceInPeriod);
         });
 
+        if (startDate != null && endDate != null && transactionOperatorName != null && type != null) {
+            return transferDTOs.stream()
+                    .filter(transferDTO -> isWithinPeriod(transferDTO.getTransferDate(), startDate, endDate))
+                    .filter(transferDTO -> transferDTO.getTransactionOperatorName() != null && transferDTO.getTransactionOperatorName().toUpperCase().equals(transactionOperatorName.toUpperCase()))
+                    .collect(Collectors.toList());
+        }
+
         if (startDate == null && endDate == null && transactionOperatorName == null && type == null) {
             return transferDTOs;
         }
