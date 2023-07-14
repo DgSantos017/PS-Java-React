@@ -19,9 +19,12 @@ public class ListTransferDataController {
     @GetMapping("/{accountId}")
     public List<TransferDTO> findByAccountId(@PathVariable("accountId") Long accountId,
                                              @RequestParam(value = "startDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime startDate,
-                                             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate) {
+                                             @RequestParam(value = "endDate", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endDate,
+                                             @RequestParam(value = "transactionOperatorName", required = false) String transactionOperatorName,
+                                             @RequestParam(value = "type", required = false) String type
+                                             ) {
 
-        return listTransferDataService.findByAccountId(accountId, startDate, endDate);
+        return listTransferDataService.findByAccountId(accountId, startDate, endDate, transactionOperatorName, type);
 
     }
 }
